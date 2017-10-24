@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(SOURCE_FILES src/main.cpp)
 
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+
 # Find OpenCV, you may need to set OpenCV_DIR variable
 # to the absolute path to the directory containing OpenCVConfig.cmake file
 # via the command line or GUI
