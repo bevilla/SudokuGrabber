@@ -71,3 +71,4 @@ CTestTestfile.cmake
 cmake-build-debug
 
 build
+lib
