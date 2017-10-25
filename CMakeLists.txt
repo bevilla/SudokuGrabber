@@ -6,7 +6,15 @@ project(SudokuGrabber)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES src/main.cpp)
+set(SOURCE_FILES
+  src/main.cpp
+  src/calculateIntersections.cpp
+  src/detectLines.cpp
+  src/findBiggestBlob.cpp
+  src/findExtremeLines.cpp
+  src/preprocessingImage.cpp
+  src/undistort.cpp
+  )
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -28,6 +36,9 @@ if(CMAKE_VERSION VERSION_LESS "2.8.11")
     # Add OpenCV headers location to your include paths
     include_directories(${OpenCV_INCLUDE_DIRS})
 endif()
+
+# Set include directories
+include_directories("include/")
 
 # Declare the executable target built from your sources
 add_executable(SudokuGrabber ${SOURCE_FILES})

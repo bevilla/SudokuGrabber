@@ -1,50 +1,40 @@
-#include "opencv2/core.hpp"
-#include "opencv2/imgproc.hpp"
-#include "opencv2/highgui.hpp"
-#include "opencv2/videoio.hpp"
-#include <iostream>
+#include	<iostream>
+#include	<string>
 
-using namespace cv;
-using namespace std;
+#include	<opencv2/imgproc.hpp>
+#include	<opencv2/highgui.hpp>
 
-void drawText(Mat & image);
+#include	"SudokuGrabber.hpp"
 
-int main()
+void		sudoku(const cv::Mat &img)
 {
-    cout << "Built with OpenCV " << CV_VERSION << endl;
-    Mat image;
-    VideoCapture capture;
-    capture.open(0);
-    if(capture.isOpened())
-    {
-        cout << "Capture is opened" << endl;
-        for(;;)
-        {
-            capture >> image;
-            if(image.empty())
-                break;
-            drawText(image);
-            imshow("Sample", image);
-            if(waitKey(10) >= 0)
-                break;
-        }
-    }
-    else
-    {
-        cout << "No capture" << endl;
-        image = Mat::zeros(480, 640, CV_8UC1);
-        drawText(image);
-        imshow("Sample", image);
-        waitKey(0);
-    }
-    return 0;
+  std::string	windowName = "Sudoku";
+  cv::Mat	result;
+  std::vector<cv::Vec2f> lines;
+  sg::SudokuEdges edges, src, dest;
+
+  sg::preprocessingImage(img, result);
+  sg::findBiggestBlob(result, result);
+  sg::detectLines(result, lines);
+  sg::findExtremeLines(lines, edges);
+  sg::calculateIntersections(img.size(), edges, src, dest);
+  sg::undistort(img, result, src, dest);
+
+  // At this point we should have the original sudoku grid undistorted
+  cv::imshow(windowName, result);
+  while (cv::waitKey(0) != 27); // press ESC to exit while loop
 }
 
-void drawText(Mat & image)
+int		main()
 {
-    putText(image, "Hello OpenCV",
-            Point(20, 50),
-            FONT_HERSHEY_COMPLEX, 1, // font face and scale
-            Scalar(255, 255, 255), // white
-            1, LINE_AA); // line thickness and type
+  std::string	filename = "sudoku.jpg";
+  cv::Mat       img = cv::imread(filename);
+
+  if (!img.data)
+    {
+      std::cerr << "Error: cannot open file \"" << filename << '"' << std::endl;
+      return EXIT_FAILURE;
+    }
+  sudoku(img);
+  return EXIT_SUCCESS;
 }
