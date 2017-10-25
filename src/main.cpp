@@ -27,7 +27,7 @@ void		sudoku(const cv::Mat &img)
 
 int		main()
 {
-  std::string	filename = "sudoku.jpg";
+  std::string	filename = "data/sudoku.jpg";
   cv::Mat       img = cv::imread(filename);
 
   if (!img.data)
