@@ -4,5 +4,6 @@ namespace sg
 {
   void		findBiggestBlob(const cv::Mat &orig, cv::Mat &dest)
   {
+    /* LOL */
   }
 };
