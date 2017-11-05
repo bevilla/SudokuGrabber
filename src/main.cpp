@@ -12,9 +12,10 @@ void		sudoku(const cv::Mat &img)
   cv::Mat	result;
   std::vector<cv::Vec2f> lines;
   sg::SudokuEdges edges, src, dest;
-
-  sg::preprocessingImage(img, result);
-  sg::findBiggestBlob(result, result);
+  cv::Mat kernel;
+  
+  sg::preprocessingImage(img, result, kernel);
+  sg::findBiggestBlob(result, result, kernel);
   sg::detectLines(result, lines);
   sg::findExtremeLines(lines, edges);
   sg::calculateIntersections(img.size(), edges, src, dest);

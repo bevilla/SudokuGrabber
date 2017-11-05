@@ -20,14 +20,14 @@ namespace sg
   ** Apply gaussian blur, threshold, bitwisenot, dilate algorithm
   ** The result is copied in dest
   */
-  void		preprocessingImage(const cv::Mat &orig, cv::Mat &dest);
+  void		preprocessingImage(const cv::Mat &orig, cv::Mat &dest, cv::Mat &kernel);
 
   /*
   ** Create a cv::Mat where sudoku grid lines are set to white
   ** and anything else is set to black
   ** The result is copied in dest
   */
-  void		findBiggestBlob(const cv::Mat &orig, cv::Mat &dest);
+  void		findBiggestBlob(const cv::Mat &orig, cv::Mat &dest, cv::Mat &kernel);
 
   /*
   ** Apply HoughLines and merge lines

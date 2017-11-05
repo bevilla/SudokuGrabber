@@ -4,7 +4,7 @@ namespace sg
 {
   const cv::Mat	kernel = (cv::Mat_<uchar>(3, 3) << 0, 1, 0, 1, 1, 1, 0, 1, 0);
 
-  void		preprocessingImage(const cv::Mat &orig, cv::Mat &dest)
+  void		preprocessingImage(const cv::Mat &orig, cv::Mat &dest, cv::Mat &myKernel)
   {
     cv::Mat result;
 
@@ -14,5 +14,6 @@ namespace sg
     cv::bitwise_not(result, result);
     cv::dilate(result, result, kernel);
     dest = result;
+    myKernel = kernel;
   }
 };
