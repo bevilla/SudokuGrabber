@@ -10,7 +10,7 @@ namespace sg
     int max = 1;
 
     cv::Point maxPt;
-    
+
     for (int y = 0; y < dest.size().height; y++) {
       uchar *row = dest.ptr(y);
       for (int x = 0; x < dest.size().width; x++) {
@@ -25,20 +25,20 @@ namespace sg
     }
 
     floodFill(dest, maxPt, CV_RGB(255,255,255));
-    
-    std::cout << dest.size().width << std::endl;
-    std::cout << dest.size().height << std::endl;
+
+    //std::cout << dest.size().width << std::endl;
+    //std::cout << dest.size().height << std::endl;
     for (int y = 0; y < dest.size().height; y++) {
       uchar *row = dest.ptr(y);
       for (int x = 0; x < dest.size().width; x++) {
     	if (row[x] == 64 && x != maxPt.x && y != maxPt.y) {
     	  int area = floodFill(dest, cv::Point(x, y), CV_RGB(0,0,0));
     	}
-    	std::cout << "x : " << x << std::endl;
+    	//std::cout << "x : " << x << std::endl;
       }
-      std::cout << "y : " << y << std::endl ;
+      //std::cout << "y : " << y << std::endl ;
     }
     erode(dest, dest, kernel);
-    
+
   }
 };

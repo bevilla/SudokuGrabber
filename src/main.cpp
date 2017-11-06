@@ -13,11 +13,11 @@ void		sudoku(const cv::Mat &img)
   std::vector<cv::Vec2f> lines;
   sg::SudokuEdges edges, src, dest;
   cv::Mat kernel;
-  
+
   sg::preprocessingImage(img, result, kernel);
   sg::findBiggestBlob(result, result, kernel);
   sg::detectLines(result, lines);
-  sg::findExtremeLines(lines, edges);
+  sg::findExtremeLines(result, lines, edges);
   sg::calculateIntersections(img.size(), edges, src, dest);
   sg::undistort(img, result, src, dest);
 
@@ -29,6 +29,7 @@ void		sudoku(const cv::Mat &img)
 int		main()
 {
   std::string	filename = "data/sudoku.jpg";
+  //std::string	filename = "../test_grid.jpg";
   cv::Mat       img = cv::imread(filename);
 
   if (!img.data)

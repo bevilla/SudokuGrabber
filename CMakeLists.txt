@@ -14,6 +14,7 @@ set(SOURCE_FILES
   src/findExtremeLines.cpp
   src/preprocessingImage.cpp
   src/undistort.cpp
+  src/drawLine.cpp
   )
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR})

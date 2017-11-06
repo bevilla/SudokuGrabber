@@ -33,13 +33,13 @@ namespace sg
   ** Apply HoughLines and merge lines
   ** The result is copied in lines
   */
-  void		detectLines(const cv::Mat &orig, std::vector<cv::Vec2f> &lines);
+  void		detectLines(cv::Mat &dest, std::vector<cv::Vec2f> &lines);
 
   /*
   ** Get edges of extreme lines
   ** The result is copied in edges
   */
-  void		findExtremeLines(const std::vector<cv::Vec2f> &lines, SudokuEdges &edges);
+  void		findExtremeLines(cv::Mat &dest, const std::vector<cv::Vec2f> &lines, SudokuEdges &edges);
 
   /*
   ** Find intersections of the four lines in order to apply undistortion
@@ -58,4 +58,6 @@ namespace sg
 			  cv::Mat &undistorted,
 			  const SudokuEdges &src,
 			  const SudokuEdges &dest);
+
+  void       drawLine(cv::Vec2f line, cv::Mat &img, cv::Scalar rgb = CV_RGB(0,0,255));
 };
