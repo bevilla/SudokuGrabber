@@ -39,7 +39,7 @@ namespace sg
   ** Get edges of extreme lines
   ** The result is copied in edges
   */
-  void		findExtremeLines(cv::Mat &dest, const std::vector<cv::Vec2f> &lines, SudokuEdges &edges);
+  void		findExtremeLines(const std::vector<cv::Vec2f> &lines, SudokuEdges &edges);
 
   /*
   ** Find intersections of the four lines in order to apply undistortion
@@ -47,8 +47,9 @@ namespace sg
   */
   void		calculateIntersections(const cv::Size &matSize,
 				       const SudokuEdges &edges,
-				       SudokuEdges &src,
-				       SudokuEdges &dest);
+				       cv::Point2f src[],
+				       cv::Point2f dest[],
+                       int *maxLength);
 
   /*
   ** Apply undistortion using src and dest coordinates
@@ -56,8 +57,9 @@ namespace sg
   */
   void		undistort(const cv::Mat &orig,
 			  cv::Mat &undistorted,
-			  const SudokuEdges &src,
-			  const SudokuEdges &dest);
+			  const cv::Point2f src[],
+			  const cv::Point2f dest[],
+              const int maxLength);
 
-  void       drawLine(cv::Vec2f line, cv::Mat &img, cv::Scalar rgb = CV_RGB(0,0,255));
+              void       drawLine(cv::Vec2f line, cv::Mat &img, cv::Scalar rgb = CV_RGB(0,0,255));
 };
