@@ -78,9 +78,11 @@ namespace sg
 
         mergeRelatedLines(&lines, dest);
 
-        /*for (int i=0 ; i<lines.size() ; i++)
+        /*
+        for (int i=0 ; i<lines.size() ; i++)
         {
-            drawLine(lines[i], dest, CV_RGB(0,0,128));
-        }*/
+            drawLine(lines[i], dest, CV_RGB(0,0,255));
+        }
+         */
     }
 };

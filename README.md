@@ -16,7 +16,7 @@ cd ..
 If you got this error:
 > Could not find a package configuration file provided by "OpenCV" with any of the following names...
 
-compile the OpenCV library and use cmake like this:
+compile the OpenCV 3.x library and use cmake like this:
 
 ```bash
   OpenCV_DIR=<path_to_opencv_lib> cmake ..

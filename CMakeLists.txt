@@ -15,14 +15,14 @@ set(SOURCE_FILES
   src/preprocessingImage.cpp
   src/undistort.cpp
   src/drawLine.cpp
-  )
+        src/DigitRecognizer.cpp include/DigitRecognizer.hpp src/find2DArrayNumber.cpp include/IClassify.hpp)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Find OpenCV, you may need to set OpenCV_DIR variable
 # to the absolute path to the directory containing OpenCVConfig.cmake file
 # via the command line or GUI
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.3 REQUIRED)
 
 # If the package has been found, several variables will
 # be set, you can find the full list with descriptions
@@ -46,3 +46,17 @@ add_executable(SudokuGrabber ${SOURCE_FILES})
 
 # Link your application with OpenCV libraries
 target_link_libraries(SudokuGrabber ${OpenCV_LIBS})
+
+# Macro
+## Copy full directories
+macro(resource_dirs dirs)
+    foreach(dir ${dirs})
+        # Replace / at the end of the path (copy dir content VS copy dir)
+        string(REGEX REPLACE "/+$" "" dirclean "${dir}")
+        message(STATUS "Copying resource ${dirclean}")
+        file(COPY ${dirclean} DESTINATION ${CMAKE_BINARY_DIR})
+    endforeach()
+endmacro()
+
+# Copy data to bin directory
+resource_dirs(data)

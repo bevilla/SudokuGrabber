@@ -4,7 +4,7 @@
 
 namespace sg
 {
-    void drawLine(cv::Vec2f line, cv::Mat &img, cv::Scalar rgb = CV_RGB(0,0,255))
+    void drawLine(cv::Vec2f line, cv::Mat &img, cv::Scalar rgb = CV_RGB(255,0,255))
     {
         if(line[1]!=0)
         {
