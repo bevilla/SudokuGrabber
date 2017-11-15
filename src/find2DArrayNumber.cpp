@@ -32,7 +32,7 @@ namespace sg {
                 }
 
                 // Fill edges with black color
-                /*
+                
                 for(int l=0;l<dist/10;l++)
                 {
                     floodFill(undistortedThreshed, cv::Point(l,l), cvScalar(0));
@@ -54,24 +54,33 @@ namespace sg {
                 }*/
 
 
+                cv::Mat image(356, 356, CV_8UC3, cv::Scalar(0,0,0));
+
+
                 cv::Moments m = cv::moments(currentCell, true);
                 int area = static_cast<int>(m.m00);
-
-                imshow("tested", currentCell);
+//                imshow("tested", currentCell);
 
                 if (area > currentCell.rows * currentCell.cols / 5) {
                     int number = dr.classify(currentCell);
                     std::cout << "Classified as: " << number << std::endl;
+                    std::string numberString = std::to_string(number);
+                    std::cout << "Number string :" << numberString << std::endl;
+                    //cv::putText(image, numberString, cv::Point(100, 100), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(255, 255, 255));
                     output[j * 9 + i] = number;
                     // cv::waitKey(0);
                 } else {
                     output[j * 9 + i] = 0;
+                    cv::putText(image, "0", cv::Point(currentCell.rows, currentCell.cols), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(255, 255, 255));
                     std::cout << "Empty block" << std::endl;
                 }
+                imshow("test", image);
 
-                // cv::waitKey(0);
 
-                // cv::imshow(windowName, undistortedThreshed);
+
+//                cv::waitKey(0);
+
+                //cv::imshow(windowName, undistortedThreshed);
             }
             printf("\n");
         }
