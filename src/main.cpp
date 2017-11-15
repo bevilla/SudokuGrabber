@@ -39,6 +39,21 @@ void sudoku(const cv::Mat &img) {
     // TODO : use Sudoku Solver
     int *tab = sg::find2DArrayNumber(undistortedThreshed, dr, maxLength);
 
+    cv::Mat image(351, 351, CV_8UC3, cv::Scalar(0,0,0));
+
+    for (int i = 0; i < 81; ++i) {
+        const int number = tab[i];
+
+        cv::putText(image,
+                    std::to_string(number).c_str(),
+                    cv::Point(12 + 39 * (i % 9), 30 + 39 * (i / 9)),
+                    cv::FONT_HERSHEY_SIMPLEX,
+                    1,
+                    cv::Scalar(255, 255, 255));
+    }
+
+    imshow("output", image);
+
     // At this point we should have the original sudoku grid undistorted
     cv::imshow(windowName, undistortedThreshed);
     while (cv::waitKey(0) != 27); // press ESC to exit while loop
