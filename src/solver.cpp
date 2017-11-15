@@ -18,7 +18,7 @@ void Solver::convert(int *tab)
     j = 0;
     while (j != 9)
     {
-      _grille[i][j] = u;
+      _grille[i][j] = tab[u];
       u++;
       j++;
     }
