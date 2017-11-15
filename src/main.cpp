@@ -5,6 +5,8 @@
 #include    <opencv2/highgui.hpp>
 #include    <DigitRecognizer.hpp>
 #include    "SudokuGrabber.hpp"
+#include    "Solver.hpp"
+
 
 void sudoku(const cv::Mat &img) {
     std::string windowName = "Sudoku";
@@ -53,6 +55,11 @@ void sudoku(const cv::Mat &img) {
     }
 
     imshow("output", image);
+
+    /*
+    Solver solv(tab);
+    solv.print();
+    */
 
     // At this point we should have the original sudoku grid undistorted
     cv::imshow(windowName, undistortedThreshed);

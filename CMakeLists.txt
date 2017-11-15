@@ -1,5 +1,5 @@
 # cmake needs this line
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.5)
 
 # Define project name
 project(SudokuGrabber)
@@ -15,7 +15,11 @@ set(SOURCE_FILES
   src/preprocessingImage.cpp
   src/undistort.cpp
   src/drawLine.cpp
-        src/DigitRecognizer.cpp include/DigitRecognizer.hpp src/find2DArrayNumber.cpp include/IClassify.hpp)
+  src/DigitRecognizer.cpp
+  src/find2DArrayNumber.cpp
+  src/solver.cpp
+  src/sudoku_solver.cpp)
+
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -40,6 +44,8 @@ endif()
 
 # Set include directories
 include_directories("include/")
+
+link_directories("lib/")
 
 # Declare the executable target built from your sources
 add_executable(SudokuGrabber ${SOURCE_FILES})
