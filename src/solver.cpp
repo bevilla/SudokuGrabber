@@ -1,4 +1,5 @@
 #include "Solver.hpp"
+#include "Sudoku_solver.hpp"
 
 Solver::Solver(int *tab)
 {
